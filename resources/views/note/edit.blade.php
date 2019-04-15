@@ -23,7 +23,7 @@
             </div>
             <div class="field">
                 <div class="control" style="text-align: right;">
-                    <button type="reset" class="button">清空内容</button>
+                    <button type="button" class="button" onclick="resetForm()">清空内容</button>
                     <button type="button" class="button is-danger" onclick="document.getElementById('delete_form').submit()">删除记事</button>
                     <button type="submit" class="button is-link">更新记事</button>
                 </div>
@@ -34,6 +34,12 @@
             @csrf
         </form>
     </div>
+    <script>
+        function resetForm() {
+            document.getElementsByClassName('textarea').item(0).value='';
+            document.getElementsByClassName('input').item(0).value='';
+        }
+    </script>
     @if($errors->any())
         <div class="notification is-danger" style="margin: 0 15%;">
             <ul>
