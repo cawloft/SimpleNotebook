@@ -10,10 +10,13 @@
         {!! nl2br(e($note->content)) !!}
         <div class="update_time">记事创建于 {{ $note->created_at }}</div>
         <div class="update_time">最后编辑于 {{ $note->updated_at}}</div>
+        <div class="update_time">作者: {{ $note->user->name }}(UID: {{$note->user->id}})</div>
+        @if(Auth::id() == $note->user->id)
         <div class="field">
             <div class="control" style="text-align: right; margin-top: 10px;">
                 <button type="button" class="button is-link" onclick="location.href='/note/{{ $note->id }}/edit'">编辑记事</button>
             </div>
         </div>
+        @endif
     </div>
 @endsection

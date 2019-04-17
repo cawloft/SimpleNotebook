@@ -17,7 +17,7 @@
     </ul>
     <br/><br/>
     <p>是的，其实这个页面是为了凑主页按钮数的。</p>
-    <p>最后祝你，身体健康。</p>
+    <p>最后祝你，身体健康。再见。</p>
     <br/>
     <p>Made with <span style="color: #e25555;">&#9829;</span> by cawloft.</p>
 

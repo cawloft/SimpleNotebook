@@ -26,9 +26,12 @@ Route::get('/note', function() {
 });
 
 Route::get('/', 'NoteController@index');
-Route::get('/note/create', 'NoteController@create');
-Route::post('/note/create', 'NoteController@store');
+Route::get('/note/create', 'NoteController@create')->middleware('auth');
+Route::post('/note/create', 'NoteController@store')->middleware('auth');
 Route::get('/note/{note}', 'NoteController@show');
-Route::get('/note/{note}/edit', 'NoteController@edit');
-Route::patch('note/{note}', 'NoteController@update');
-Route::delete('note/{note}', 'NoteController@destroy');
+Route::get('/note/{note}/edit', 'NoteController@edit')->middleware('auth');
+Route::patch('note/{note}', 'NoteController@update')->middleware('auth');
+Route::delete('note/{note}', 'NoteController@destroy')->middleware('auth');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
