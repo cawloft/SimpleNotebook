@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Note;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class NoteController extends Controller{
@@ -30,10 +31,7 @@ class NoteController extends Controller{
 
     public function store(){
 
-        $attributes = request()->validate([
-            'title' => 'required|max:20',
-            'content' => 'required'
-        ]);
+        $attributes = $this->validateNote(request());
 
         $attributes['owner_id'] = Auth::user()->id;
 
@@ -61,10 +59,7 @@ class NoteController extends Controller{
 
         $this->authorize('update', $note);
 
-        $note->update(request()->validate([
-            'title' => 'required|max:20',
-            'content' => 'required'
-        ]));
+        $note->update($this->validateNote(request()));
 
         return redirect('/note/' . $note->id);
 
@@ -77,6 +72,15 @@ class NoteController extends Controller{
         $note->delete();
 
         return redirect('/');
+
+    }
+
+    public function validateNote(Request $request){
+
+        return $request->validate([
+            'title' => 'required|max:20',
+            'content' => 'required'
+        ]);
 
     }
 
